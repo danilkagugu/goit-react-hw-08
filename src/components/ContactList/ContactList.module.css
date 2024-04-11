@@ -1,0 +1,18 @@
+.listEl {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 40px;
+
+  margin-top: 15px;
+}
+
+.itemList {
+  display: flex;
+  width: 300px;
+  border: 1px solid gray;
+  padding: 10px;
+  padding-left: 25px;
+  justify-content: space-between;
+  border-radius: 5px;
+}

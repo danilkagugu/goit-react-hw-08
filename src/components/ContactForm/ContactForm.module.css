@@ -1,0 +1,53 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 15px;
+}
+
+.formInput {
+  padding: 5px 12px;
+  font-size: 14px;
+  line-height: 20px;
+  color: #24292e;
+  vertical-align: middle;
+  background-color: #ffffff;
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  outline: none;
+  box-shadow: rgba(225, 228, 232, 0.2) 0px 1px 0px 0px inset;
+}
+.formInput:focus {
+  border-color: #0366d6;
+  outline: none;
+  box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+}
+
+.error {
+  color: red;
+}
+
+.btnAdd {
+  width: 100px;
+  margin: 10px auto 0;
+  border: none;
+  padding: 8px;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.btnAdd:hover {
+  background: #f6f9fe;
+  color: #174ea6;
+}
+
+.btnAdd:active {
+  box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%),
+    0 8px 12px 6px rgb(60 64 67 / 15%);
+  outline: none;
+}
