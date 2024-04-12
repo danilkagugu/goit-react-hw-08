@@ -1,34 +1,31 @@
 import { useId } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { object, string } from "yup";
-import css from "./ContactForm.module.css";
-import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contacts/operations";
-// import { addContact } from "../../redux/contactsSlice";
+import css from "./RegistrationForm.module.css";
+// import { useDispatch } from "react-redux";
 
 const init = {
   name: "",
-  number: "",
+  email: "",
+  password: "",
 };
 
-const ContactForm = () => {
-  const dispatch = useDispatch();
+const RegistrationForm = ({ onRegister }) => {
+  //   const dispatch = useDispatch();
   const nameId = useId();
   const numberId = useId();
 
-  const FeedbackSchema = object().shape({
+  const RigisterSchema = object().shape({
     name: string()
       .min(3, "Too Short!")
       .max(50, "Too Long!")
       .required("Required"),
-    number: string()
-      .min(3, "Too Short!")
-      .max(20, "Too Long!")
-      .required("Required"),
+    email: string().email("Must be a valid email").required("Required"),
+    password: string().min(8, "Too Short!").required("Required"),
   });
 
   const handleSubmit = (value, actions) => {
-    dispatch(addContact(value));
+    onRegister(value);
 
     actions.resetForm();
   };
@@ -38,7 +35,7 @@ const ContactForm = () => {
       <Formik
         initialValues={init}
         onSubmit={handleSubmit}
-        validationSchema={FeedbackSchema}
+        validationSchema={RigisterSchema}
       >
         <Form className={css.form}>
           <label htmlFor={nameId}>Name</label>
@@ -53,20 +50,31 @@ const ContactForm = () => {
             <ErrorMessage name="name" as="span" />
           </span>
 
-          <label htmlFor={numberId}>Number</label>
+          <label htmlFor={nameId}>Email</label>
           <Field
             className={css.formInput}
             type="text"
-            name="number"
-            id={numberId}
-            placeholder="548-78-91"
+            name="email"
+            id={nameId}
+            placeholder="danilyanishevskiy@gmail.com"
           />
           <span className={css.error}>
-            <ErrorMessage name="number" as="span" />
+            <ErrorMessage name="email" as="span" />
+          </span>
+          <label htmlFor={numberId}>Password</label>
+          <Field
+            className={css.formInput}
+            type="password"
+            name="password"
+            id={numberId}
+            placeholder="password"
+          />
+          <span className={css.error}>
+            <ErrorMessage name="password" as="span" />
           </span>
 
           <button className={css.btnAdd} type="submit">
-            Add
+            registration
           </button>
         </Form>
       </Formik>
@@ -74,4 +82,4 @@ const ContactForm = () => {
   );
 };
 
-export default ContactForm;
+export default RegistrationForm;
