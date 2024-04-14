@@ -1,7 +1,8 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { object, string } from "yup";
 import css from "./RegistrationForm.module.css";
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
+import { register } from "../../redux/auth/operations";
 
 const init = {
   name: "",
@@ -9,9 +10,11 @@ const init = {
   password: "",
 };
 
-const RegistrationForm = ({ onRegister }) => {
-  //   const dispatch = useDispatch();
-
+const RegistrationForm = () => {
+  const dispatch = useDispatch();
+  const onRegister = (formData) => {
+    dispatch(register(formData));
+  };
   const RigisterSchema = object().shape({
     name: string()
       .min(3, "Too Short!")

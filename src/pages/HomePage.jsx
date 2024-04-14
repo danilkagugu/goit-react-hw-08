@@ -1,4 +1,4 @@
-import phoneImg from "../../img/phone.jpg";
+import phoneImg from "../img/phone.jpg";
 import css from "./HomePage.module.css";
 const HomePage = () => {
   return (

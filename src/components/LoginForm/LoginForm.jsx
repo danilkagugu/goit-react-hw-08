@@ -1,16 +1,19 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { object, string } from "yup";
 import css from "./LoginForm.module.css";
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/auth/operations";
 
 const init = {
   email: "",
   password: "",
 };
 
-const LoginForm = ({ onLogin }) => {
-  //   const dispatch = useDispatch();
-
+const LoginForm = () => {
+  const dispatch = useDispatch();
+  const onLogin = (formData) => {
+    dispatch(login(formData));
+  };
   const RigisterSchema = object().shape({
     email: string().email("Must be a valid email").required("Required"),
     password: string().min(8, "Too Short!").required("Required"),

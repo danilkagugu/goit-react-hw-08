@@ -2,63 +2,62 @@
 // import ContactForm from "../ContactForm/ContactForm";
 // import SearchBox from "../SearchBox/SearchBox";
 // import ContactList from "../ContactList/ContactList";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Suspense, lazy, useEffect } from "react";
 import Layout from "../Layout/Layout";
 import { Route, Routes } from "react-router-dom";
 import Loader from "../Loader/Loader";
 import { refreshUser } from "../../redux/auth/operations";
-import RestrictedRoute from "../../pages/RestrictedRoute/RestrictedRoute";
-import PrivateRoute from "../../pages/PrivateRoute/PrivateRoute";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import RestrictedRoute from "../RestrictedRoute/RestrictedRoute";
+import { selectIsRefreshing } from "../../redux/auth/selectors";
 
-const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
-const RegistrationFormPage = lazy(() =>
-  import("../../pages/RegistrationFormPage/RegistrationFormPage")
-);
-const LoginFormPage = lazy(() =>
-  import("../../pages/LoginFormPage/LoginFormPage")
-);
-const ContactsPage = lazy(() =>
-  import("../../pages/ContactsPage/ContactsPage")
-);
+const HomePage = lazy(() => import("../../pages/HomePage"));
+const RegistrationPage = lazy(() => import("../../pages/RegistrationPage"));
+const LoginPage = lazy(() => import("../../pages/LoginPage"));
+const ContactsPage = lazy(() => import("../../pages/ContactsPage"));
 
 function App() {
   const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectIsRefreshing);
   useEffect(() => {
-    // dispatch(fetchContacts());
     dispatch(refreshUser());
   }, [dispatch]);
   return (
     <div>
       <Layout>
         <Suspense fallback={<Loader />}>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route
-              path="/contacts"
-              element={
-                <PrivateRoute>
-                  <ContactsPage />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/register"
-              element={
-                <RestrictedRoute>
-                  <RegistrationFormPage />
-                </RestrictedRoute>
-              }
-            />
-            <Route
-              path="/login"
-              element={
-                <RestrictedRoute>
-                  <LoginFormPage />
-                </RestrictedRoute>
-              }
-            />
-          </Routes>
+          {isRefreshing ? (
+            <span>Please, wait...</span>
+          ) : (
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route
+                path="/contacts"
+                element={
+                  <PrivateRoute>
+                    <ContactsPage />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/register"
+                element={
+                  <RestrictedRoute>
+                    <RegistrationPage />
+                  </RestrictedRoute>
+                }
+              />
+              <Route
+                path="/login"
+                element={
+                  <RestrictedRoute>
+                    <LoginPage />
+                  </RestrictedRoute>
+                }
+              />
+            </Routes>
+          )}
         </Suspense>
       </Layout>
     </div>
