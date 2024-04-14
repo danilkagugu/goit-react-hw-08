@@ -29,44 +29,39 @@ function App() {
     dispatch(refreshUser());
   }, [dispatch]);
   return (
-    <Layout>
-      <Suspense fallback={<Loader />}>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <PrivateRoute>
-                <HomePage />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/contacts"
-            element={
-              <PrivateRoute>
-                <ContactsPage />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/register"
-            element={
-              <RestrictedRoute>
-                <RegistrationFormPage />
-              </RestrictedRoute>
-            }
-          />
-          <Route
-            path="/login"
-            element={
-              <RestrictedRoute>
-                <LoginFormPage />
-              </RestrictedRoute>
-            }
-          />
-        </Routes>
-      </Suspense>
-    </Layout>
+    <div>
+      <Layout>
+        <Suspense fallback={<Loader />}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route
+              path="/contacts"
+              element={
+                <PrivateRoute>
+                  <ContactsPage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/register"
+              element={
+                <RestrictedRoute>
+                  <RegistrationFormPage />
+                </RestrictedRoute>
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <RestrictedRoute>
+                  <LoginFormPage />
+                </RestrictedRoute>
+              }
+            />
+          </Routes>
+        </Suspense>
+      </Layout>
+    </div>
   );
 }
 

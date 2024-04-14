@@ -1,4 +1,3 @@
-import { useId } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { object, string } from "yup";
 import css from "./LoginForm.module.css";
@@ -11,8 +10,6 @@ const init = {
 
 const LoginForm = ({ onLogin }) => {
   //   const dispatch = useDispatch();
-  const nameId = useId();
-  const numberId = useId();
 
   const RigisterSchema = object().shape({
     email: string().email("Must be a valid email").required("Required"),
@@ -26,37 +23,39 @@ const LoginForm = ({ onLogin }) => {
   };
 
   return (
-    <div>
+    <div className={css.loginContainer}>
       <Formik
         initialValues={init}
         onSubmit={handleSubmite}
         validationSchema={RigisterSchema}
       >
         <Form className={css.form}>
-          <label htmlFor={nameId}>Email</label>
-          <Field
-            className={css.formInput}
-            type="text"
-            name="email"
-            id={nameId}
-            placeholder="danilyanishevskiy@gmail.com"
-          />
+          <label className={css.labelForm}>
+            Email
+            <Field
+              className={css.formInput}
+              type="text"
+              name="email"
+              placeholder="danilyanishevskiy@gmail.com"
+            />
+          </label>
           <span className={css.error}>
             <ErrorMessage name="email" as="span" />
           </span>
-          <label htmlFor={numberId}>Password</label>
-          <Field
-            className={css.formInput}
-            type="password"
-            name="password"
-            id={numberId}
-            placeholder="password"
-          />
+          <label className={css.labelForm}>
+            Password
+            <Field
+              className={css.formInput}
+              type="password"
+              name="password"
+              placeholder="password"
+            />
+          </label>
           <span className={css.error}>
             <ErrorMessage name="password" as="span" />
           </span>
 
-          <button className={css.btnAdd} type="submit">
+          <button className={css.btnLogin} type="submit">
             Login
           </button>
         </Form>

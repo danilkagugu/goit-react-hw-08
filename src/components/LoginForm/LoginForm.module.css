@@ -1,0 +1,43 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-radius: 3px;
+  border: 1px solid black;
+  padding: 20px;
+  align-items: center;
+}
+
+.loginContainer {
+  margin: 0 auto;
+  width: 500px;
+}
+
+.labelForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.formInput {
+  padding: 10px;
+  border-radius: 3px;
+  border: none;
+  background-color: rgb(194, 194, 194);
+  width: 400px;
+}
+
+.btnLogin {
+  width: 100px;
+  background-color: transparent;
+  padding: 7px;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.btnLogin:hover {
+  background-color: beige;
+}
+
+.error {
+  color: red;
+}

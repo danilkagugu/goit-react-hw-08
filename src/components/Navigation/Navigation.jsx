@@ -5,22 +5,16 @@ import css from "./Navigation.module.css";
 import clsx from "clsx";
 
 const buildLinkClass = ({ isActive }) => {
-  return clsx(css.link, isActive && css.active);
+  return clsx(css.link, css.img, isActive && css.active);
 };
 
 const Navigation = () => {
   const isLogin = useSelector(selectIsSignedIn);
   return (
     <div className={css.header}>
-      <nav>
+      <nav className={css.userMenu}>
         <NavLink className={buildLinkClass} to="/">
           Home
-        </NavLink>
-        <NavLink className={buildLinkClass} to="/register">
-          Registration
-        </NavLink>
-        <NavLink className={buildLinkClass} to="/login">
-          Login
         </NavLink>
 
         {isLogin && (

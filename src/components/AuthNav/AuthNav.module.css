@@ -1,0 +1,33 @@
+.authContainer {
+  display: flex;
+  gap: 40px;
+}
+
+.link {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.active {
+  background-color: #0f5c21;
+}
+
+.qq {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.link:hover {
+  background-color: #218838; /* зміна кольору фону при наведенні */
+}

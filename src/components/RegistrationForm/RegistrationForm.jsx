@@ -1,4 +1,3 @@
-import { useId } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { object, string } from "yup";
 import css from "./RegistrationForm.module.css";
@@ -12,8 +11,6 @@ const init = {
 
 const RegistrationForm = ({ onRegister }) => {
   //   const dispatch = useDispatch();
-  const nameId = useId();
-  const numberId = useId();
 
   const RigisterSchema = object().shape({
     name: string()
@@ -31,50 +28,53 @@ const RegistrationForm = ({ onRegister }) => {
   };
 
   return (
-    <div>
+    <div className={css.registrationContainer}>
       <Formik
         initialValues={init}
         onSubmit={handleSubmit}
         validationSchema={RigisterSchema}
       >
         <Form className={css.form}>
-          <label htmlFor={nameId}>Name</label>
-          <Field
-            className={css.formInput}
-            type="text"
-            name="name"
-            id={nameId}
-            placeholder="Danulo Yanishevskiy"
-          />
+          <label className={css.labelForm}>
+            Name
+            <Field
+              className={css.formInput}
+              type="text"
+              name="name"
+              placeholder="Danulo Yanishevskiy"
+            />
+          </label>
           <span className={css.error}>
             <ErrorMessage name="name" as="span" />
           </span>
 
-          <label htmlFor={nameId}>Email</label>
-          <Field
-            className={css.formInput}
-            type="text"
-            name="email"
-            id={nameId}
-            placeholder="danilyanishevskiy@gmail.com"
-          />
+          <label className={css.labelForm}>
+            Email
+            <Field
+              className={css.formInput}
+              type="text"
+              name="email"
+              placeholder="danilyanishevskiy@gmail.com"
+            />
+          </label>
           <span className={css.error}>
             <ErrorMessage name="email" as="span" />
           </span>
-          <label htmlFor={numberId}>Password</label>
-          <Field
-            className={css.formInput}
-            type="password"
-            name="password"
-            id={numberId}
-            placeholder="password"
-          />
+          <label className={css.labelForm}>
+            Password
+            <Field
+              className={css.formInput}
+              type="password"
+              name="password"
+              placeholder="password"
+            />
+          </label>
           <span className={css.error}>
             <ErrorMessage name="password" as="span" />
           </span>
 
-          <button className={css.btnAdd} type="submit">
-            registration
+          <button className={css.btnRegistration} type="submit">
+            Registration
           </button>
         </Form>
       </Formik>

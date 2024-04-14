@@ -3,14 +3,14 @@ const filterSlice = createSlice({
   name: "filter", // Ім'я слайсу
   initialState: { name: "" }, //Початковий стан редюсера слайсу
   reducers: {
-    changeFilter(state, action) {
+    changeFilterName(state, action) {
       state.name = action.payload;
     },
   },
 });
 
 // екшени
-export const { changeFilter } = filterSlice.actions;
+export const { changeFilterName } = filterSlice.actions;
 
 // Редюсер слайсу
 export const filterReducer = filterSlice.reducer;
